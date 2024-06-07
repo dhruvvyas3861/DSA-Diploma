@@ -1,6 +1,5 @@
 //1. Write a program to read and display n numbers using an array. (A)
 #include <stdio.h>
-
 int main() {
     int n;
 

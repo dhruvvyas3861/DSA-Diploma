@@ -1,4 +1,5 @@
 //7. Write a program to ƒnd the sum of 1 + (1+2) + (1+2+3) + …+(1+2+3+4+….+n).ǡ(C)
+#include<stdio.h>
 int sum(int n){
 	int i,j,sum=0;
 	for(i=1;i<=n;i++){
@@ -12,5 +13,5 @@ void main(){
 	int n;
 	printf("Enter number : ");
     scanf("%d", &n);
-    printf("sum : %d",sum(n));
+    printf("sum :%d",sum(n));
 }

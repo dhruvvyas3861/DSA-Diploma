@@ -31,6 +31,6 @@ void main(){
 	int i;
 	for(i=1;i<1001;i++){
 		if(armstrong(i))
-			printf("%d ",i);
+			printf("%d ",i);
 	}
 }

@@ -3,112 +3,101 @@
 i. PUSH, POP
 ii. Display all elements of the stack
 iii. PEEP, CHANGE
+
 */
-#include <stdio.h>
-#define N 7
-int stack[N],top=-1;
-void push(int x){
-	if(top>N)
-	{
-		printf("Stack Overflow...");
-	}
-	else{
-		top++;
-		stack[top]=x;
-	}
-}
-void pop()
-{
-	if(top==-1)
-	{
-		printf("Stack Underflow...");
-	}
-	else{
-		printf("Element Deleted...%d",stack[top]);
-		top--;
+#include<stdio.h>
+#define n 5
+void push(int s[],int *top,int x){
+	if(*top>n){
+		printf("stack overflow");
+		return;
+	}else{
+		*top=*top+1;
+		s[*top]=x;
+		printf("-- %d PUSH --",x);
+		return;
 	}
 }
-void display()
-{
-	int i=0;
-	if(top==-1)
-	{
-		printf("Stack Underflow...");
+void pop(int s[],int *top){
+	int del;
+	if(*top==-1){
+		printf("stack underflow");
+		return;
+	}else{
+		del=s[*top];
+		*top=*top-1;
+		printf("-- %d POP --",del);
+		return;
+	}
+}
+int peep(int s[],int *top,int i){
+	if(*top<0){
+		printf("stack empty");
+		return -1;
+	}if(top-i+1<0){
+		printf("Stack underflow");
+		return -1;
+	}
+	
+	int value = s[*top-i+1];
+	printf("element at position %d from top is %d",i,value);
+}
+void change(int s[],int *top,int i,int x){
+	if(*top<0){
+		printf("stack empty");
+		return;
+	}if(top-i+1<0){
+		printf("Stack underflow");
+		return;
+	}
+	s[*top-i+1]=x;
+}
+void display(int s[],int *top){
+	int i = *top;	
+	if(*top<0){
+		printf("stack underflow");
+		return;
 	}
 	else{
-		for(i=top;i>=0;i--)
-		{
-			printf("\n Element %d",stack[i]);
+		printf("--- stack ---\n");
+		while(i>=0){
+			printf("%d\n",s[i]);
+			i--;
 		}
 	}
 }
-void peep(int pos)
-{
-	if(pos-1<0)
-	{
-		printf("Stack Underflow...");
-	}
-	else{
-	printf("Element : %d ",stack[pos-1]);
-
-	}
+void main(){
+	int x,po,choice,top=-1,s[100];
+	do{
+		printf("\n1.PUSH\n2.POP\n3.PEEP\n4.CHNAGE\n5.DISPLAY\n99.EXIT\nEnter Your choice : ");
+		scanf("%d",&choice);
+		switch(choice){
+			case 1:
+				printf("Enter element : ");
+				scanf("%d",&x);
+				push(s,&top,x);
+				printf("\ntop-%d",top);
+				break;
+			case 2:
+				pop(s,&top);
+				break;
+			case 3:
+				printf("Enter position of element : ");
+				scanf("%d",&po);
+				peep(s,&top,po);
+				break;
+			case 4:
+				printf("Enter element : ");
+				scanf("%d",&x);
+				printf("Enter position of element to be change: ");
+				scanf("%d",&po);
+				change(s,&top,po,x);
+				break;
+			case 5:
+				display(s,&top);
+				break;
+			default:
+				printf("### Invalid choice ###");
+		}
+	}while(choice!=99);
 }
-void change(int pos,int chng)
-{
-	if(pos-1<0)
-	{
-		printf("Stack Underflow...");
-	}
-	else{
-		stack[pos-1]=chng;
-		printf("Value Upated...");
-	}
-
-}
-void main()
-{
-	int ch,a,ps;
-	while(1){
-	printf("\nEnter 1 for Push");
-	printf("\nEnter 2 for Pop");
-	printf("\nEnter 3 for Peep");
-	printf("\nEnter 4 for Change");
-	printf("\nEnter 5 for Display");
-	printf("\nEnter 6 for Exit");
-
-	printf("\nEnter Ur choice:");
-	scanf("%d",&ch);
-	switch(ch)
-	{
-		case 1:
-			printf("Enter Value :");
-			scanf("%d",&a);
-			push(a);
-			break;
-		case 2:
-			pop();
-			break;
-
-		case 3:
-			printf("Enter Position :");
-			scanf("%d",&ps);
-			peep(ps);
-			break;
-
-		case 4:
-			printf("Enter Position :");
-			scanf("%d",&ps);
-			printf("Enter Value :");
-			scanf("%d",&a);
-			change(ps,a);
-			break;
-
-		case 5:
-			display();
-			break;
-		case 6:
-			return;
-	}
-	}
-	
-}   

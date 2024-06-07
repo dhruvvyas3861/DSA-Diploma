@@ -17,9 +17,7 @@ int main() {
     scanf("%d", &base);
     printf("Enter the exponent: ");
     scanf("%d", &exponent);
-    
     int result = power(base, exponent);
     printf("%d to the power of %d is %d\n", base, exponent, result);
-    
     return 0;
 }

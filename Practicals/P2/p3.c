@@ -2,14 +2,11 @@
 #include <stdio.h>
 int main() {
     int n, pos, element;
-
-    // Input number of elements
     printf("Enter the number of elements: ");
     scanf("%d", &n);
 
     int arr[n+1]; // Extra space for the new element
 
-    // Read elements into array
     printf("Enter %d numbers: ", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
@@ -27,8 +24,7 @@ int main() {
     }
     arr[pos] = element;
     n++;
-
-    // Display the array after insertion
+    
     printf("Array after insertion: ");
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
