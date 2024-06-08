@@ -1,64 +1,96 @@
-//5. Write a program for the evaluation of preƒx Expression using Stack. (C)
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#define size 100
+int s[size], top = -1;
 
-#include<stdio.h>
-void push(int s[],int *top,int x,int n){
-	if(*top>=n){
-		printf("stack overflow");
-		return;
-	}else{
-		*top=*top+1;
-		s[*top]=x;
-		return;
-	}
+void push(int val)
+{
+    if (top == size - 1)
+        printf("Stack Overflow\n\n");
+    else
+        s[++top] = val;
 }
-int pop(int s[],int *top){
-	int n = sizeof(s)/sizeof(s[0]);
-	int del;
-	if(*top==-1){
-		printf("stack underflow");
-		return -1;
-	}else{
-		del=s[*top];
-		*top=*top-1;
-		return del;
-	}
+
+int pop()
+{
+    if (top == -1)
+    {
+        printf("Stack is Underflow\n");
+        return 0;
+    }
+    else
+        return s[top--];
 }
-int performOperation(int op1,int op2,char operater){
-	switch(operater){
-		case '+':
-			return op1+op2;
-		case '-':
-			return op1-op2;
-		case '*':
-			return op1*op2;
-		case '/':
-			return op1/op2;
-		default:
-			printf("invalid operater");
-	}
+
+double calculate(char c, double a, double b)
+{
+    switch (c)
+    {
+    case '+':
+        return (a + b);
+    case '-':
+        return (a - b);
+    case '*':
+        return (a * b);
+    case '/':
+        if (b == 0)
+        {
+            printf("Division by Zero\n");
+            exit(EXIT_FAILURE);
+        }
+        return (a / b);
+    default:
+        return 0;
+    }
 }
-void postfixEvalution(char prefix[]){
-	int len;
-	while(prefix[len]!='\0') len++;
-	
-	int top=-1,value=-1,s[100],n=100,i;
-	for(i=len-1;i>=0;i--){
-		if(prefix[i]>='0' && prefix[i]<='9'){
-			push(s,&top,prefix[i]-'0',n);
-		}
-		else{
-			int op2 = pop(s,&top);
-			int op1 = pop(s,&top);
-			value = performOperation(op1,op2,prefix[i]);
-			push(s,&top,value,n);
-		}
-			
-	}
-	printf("\n%d",pop(s,&top));
+double evaluate(const char *expression)
+{
+    int len = strlen(expression);
+	int i,j;
+    for (i = len - 1; i >= 0; i--)
+    {
+        char c = expression[i];
+        if (c == ' ')
+        {
+            continue;
+        }
+        else if (isdigit(c))
+        {
+            int num = 0;
+            char temp[size] = "";
+            int tempIndex = 0;
+
+            while (i >= 0 && isdigit(expression[i]))
+            {
+                temp[tempIndex++] = expression[i--];
+            }
+            i++;
+
+            char str[size] = "";
+            int strIndex = 0;
+            for (j = tempIndex - 1; j >= 0; j--)
+            {
+                str[strIndex++] = temp[j];
+            }
+            str[strIndex] = '\0';
+            sscanf(str, "%d", &num);
+            push(num);
+        }
+        else
+        {
+            double op1 = pop();
+            double op2 = pop();
+            push(calculate(c, op1, op2));
+        }
+    }
+    return pop();
 }
-void main(){
-	char prefix[100];
-	printf("Enter prefix : ");
-	gets(prefix);
-	postfixEvalution(prefix);
+void main()
+{
+    char ex[size];
+    printf("Enter Prefix: ");
+    gets(ex);
+    printf("Answer is : %lf\n", evaluate(ex));
 }

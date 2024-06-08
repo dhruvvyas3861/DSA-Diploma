@@ -24,15 +24,9 @@ void stringReverse(char *str1,char *str2) {
 int main() {
     char str1[100];
     char str2[100];
-    // Input the string
     printf("Enter a string: ");
     gets(str1);
-
-    // Reverse the string
     stringReverse(str1,str2);
-
-    // Display the reversed string
     printf("The reversed string is: %s\n", str2);
-
     return 0;
 }

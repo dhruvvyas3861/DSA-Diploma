@@ -36,19 +36,11 @@ int stringCompare(char *str1, char *str2) {
 
 int main() {
     char str1[100], str2[100];
-
-    // Input the first string
     printf("Enter the first string: ");
     gets(str1);
-
-    // Input the second string
     printf("Enter the second string: ");
     gets(str2);
-
-    // Compare the strings
     int result = stringCompare(str1, str2);
-
-    // Display the result
     if (result == 1) {
         printf("The strings are equal.\n");
     } else{

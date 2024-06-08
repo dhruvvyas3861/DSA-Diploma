@@ -1,7 +1,6 @@
 //1. Write a program to implement a Quick Sort using Array. (A)
 #include<stdio.h>
 #include<conio.h>
-// Quick Sort function
 void quicksort(int array[], int LB, int UB) {
     if (LB < UB) {
         int pivotIndex = partition(array, LB, UB);
@@ -10,7 +9,6 @@ void quicksort(int array[], int LB, int UB) {
     }
 }
 
-// Partition function
 int partition(int array[], int LB, int UB) {
     int pivot = array[LB];
     int i = LB + 1;

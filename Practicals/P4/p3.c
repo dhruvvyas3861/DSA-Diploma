@@ -31,18 +31,11 @@ void toLowercase(char *str,char *str2) {
 int main() {
     char str[100];
     char str2[100];
-
-    // Input the string
     printf("Enter a string: ");
     gets(str);
-
-   
     toUppercase(str,str2);
     printf("The string in uppercase is: %s\n", str2);
-
-   
     toLowercase(str,str2);
     printf("The string in lowercase is: %s\n", str2);
-
     return 0;
 }

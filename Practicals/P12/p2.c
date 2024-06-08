@@ -1,59 +1,61 @@
-//2. Write a program to implement a Merge Sort using Array. (B)
 #include<stdio.h>
-#include<conio.h>
-void mergeSort(int a1[], int n1, int a2[], int n2, int a3[]) {
-    int I = 0, J = 0, K = 0;
-    while (I < n1 && J < n2) {
-        if (a1[I] < a2[J]) {
-            a3[K] = a1[I];
-            K++;
-            I++;
-        } else if (a1[I] > a2[J]) {
-            a3[K] = a2[J];
-            K++;
-            J++;
-        } else {
-            a3[K] = a1[I];
-            K++;
-            I++;
-            J++;
-        }
-    }
-    while (I < n1) {
-        a3[K] = a1[I];
-        K++;
-        I++;
-    }
-    while (J < n2) {
-        a3[K] = a2[J];
-        K++;
-        J++;
-    }
+void merge(int a[],int len,int lb,int mid,int ub){
+	int size =(ub-lb)+1;
+	int b[size];
+	int i=lb;
+	int j=mid+1;
+	int k=0;
+	while(i<=mid && j<=ub){
+		if(a[i]<a[j]){
+			b[k]=a[i];
+			i++;
+		}
+		else{
+			b[k]=a[j];
+			j++;
+		}
+		k++;
+	}
+	if(i>mid)
+		while(j<=ub){
+			b[k]=a[j];
+			k++;
+			j++;
+		}
+	else
+		while(i<=mid){
+			b[k]=a[i];
+			k++;
+			i++;
+		}
+	for(i=0;i<size;i++,lb++)
+		a[lb]=b[i];
 }
-void main()
-{
-    int n1;
-    int n2;
-    printf("Enter Size of an array 1 :");
-    scanf("%d",&n1);
-    int a1[n1];
-    for(int i=0;i<n1;i++)
-    {
-        printf("Enter Element no %d :",(i+1));
-        scanf("%d",&a1[i]);
-    }
-    printf("Enter Size of an array 2 :");
-    scanf("%d",&n2);
-    int a2[n2];
-    for(int i=0;i<n2;i++)
-    {
-        printf("Enter Element no %d :",(i+1));
-        scanf("%d",&a2[i]);
-    }
-    int a3[n1+n2];
-    mergeSort(a1, n1, a2, n2, a3);
-    for(int i=0;i<n1+n2;i++)
-    {
-        printf("%d  ",a3[i]);
-    }
+void mergeSort(int a[],int len,int lb,int ub){
+	if(lb<ub){
+		int mid =(lb+ub)/2;
+		mergeSort(a,len,lb,mid);
+		mergeSort(a,len,mid+1,ub);
+		merge(a,len,lb,mid,ub);
+	}
+	
+}
+
+void main(){
+	int i,size;
+	printf("Enter Array Size :");
+	scanf("%d",&size);
+	int a[size];
+
+	for(i=0;i<size;i++){
+		printf("Enter Element no %d: ",(i+1));
+		scanf("%d",&a[i]);
+	}
+	
+	mergeSort(a,size,0,size-1);
+
+	printf("\nSorted Array:");
+	for(i=0;i<size;i++){
+		printf("%d ",a[i]);
+	}
 }

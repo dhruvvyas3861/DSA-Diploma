@@ -13,7 +13,7 @@ int main() {
     }
 
     // Input position and element to insert
-    printf("Enter the position to insert (0 to %d): ", n);
+    printf("Enter the position to insert (0 to %d): ", n-1);
     scanf("%d", &pos);
     printf("Enter the element to insert: ");
     scanf("%d", &element);
@@ -24,7 +24,7 @@ int main() {
     }
     arr[pos] = element;
     n++;
-    
+
     printf("Array after insertion: ");
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);

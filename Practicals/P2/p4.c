@@ -4,19 +4,16 @@
 int main() {
     int n, element, pos = -1;
 
-    // Input number of elements
     printf("Enter the number of elements: ");
     scanf("%d", &n);
 
     int arr[n];
 
-    // Read elements into array
     printf("Enter %d numbers: ", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    // Input the element to delete
     printf("Enter the element to delete: ");
     scanf("%d", &element);
 
@@ -37,7 +34,6 @@ int main() {
         }
         n--;
 
-        // Display the array after deletion
         printf("Array after deletion: ");
         for (int i = 0; i < n; i++) {
             printf("%d ", arr[i]);

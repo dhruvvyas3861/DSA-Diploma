@@ -39,7 +39,7 @@ void main(){
 	struct Node* first = NULL;
 	int choice=-1,x,n,len;
 	do{
-		printf("\n1.Insert at begi\n2.search node\nEnter your choice : ");
+		printf("\n1.Insert at begin\n2.search node\nEnter your choice : ");
 		scanf("%d",&choice);
 		switch(choice){
 			case 1:

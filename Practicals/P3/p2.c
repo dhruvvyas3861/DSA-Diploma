@@ -10,15 +10,9 @@ void stringCopy(char *str2, char *str1) {
 }
 int main() {
     char str1[100], str2[100];
-
-    // Input the source string
     printf("Enter the source string: ");
     gets(str1);
-
-    // Copy source string to destination string
     stringCopy(str2, str1);
-
-    // Display the destination string
     printf("The copied string is: %s\n", str2);
 
     return 0;
